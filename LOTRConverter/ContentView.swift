@@ -66,7 +66,7 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .foregroundStyle(.white)
             }
-//            .border(.blue)
+            .border(.blue)
         }
     }
 }
