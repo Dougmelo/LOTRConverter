@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var showExchengeInfo = false
+    @State var leftAmount = ""
+    @State var rightAmount = ""
     var body: some View {
         ZStack {
             Image(.background)
@@ -23,48 +26,65 @@ struct ContentView: View {
                 Text("Currency Exchange")
                     .font(.largeTitle)
                     .foregroundColor(.white)
-                
-                HStack{
-                    VStack{
-                        HStack{
-                            Image(.silverpiece)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 30)
+                VStack{
+                    HStack{
+                        VStack{
+                            HStack{
+                                Image(.silverpiece)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 30)
+                                
+                                Text("Silver Piece")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.bottom, -5)
                             
-                            Text("Currency Exchange")
-                                .font(.headline)
-                                .foregroundColor(.white)
+                            TextField("Amount", text: $leftAmount)
+                                .textFieldStyle(.roundedBorder)
                             
                         }
+                        Image(systemName: "equal")
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                            .symbolEffect(.pulse)
                         
-                        Text("Adiconar TextField")
-                        
-                    }
-                    Image(systemName: "equal")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
-                        .symbolEffect(.pulse)
-                    
-                    VStack{
-                        HStack{
-                            Text("Gold Piece")
-                                .font(.headline)
-                                .foregroundStyle(.white)
-                            
-                            Image(.goldpiece)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 33)
+                        VStack{
+                            HStack{
+                                Text("Gold Piece")
+                                    .font(.headline)
+                                    .foregroundStyle(.white)
+                                
+                                Image(.goldpiece)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 33)
+                            }.padding(.bottom, -5)
+                            TextField("Amount", text: $rightAmount)
+                                .textFieldStyle(.roundedBorder)
+                                .multilineTextAlignment(.trailing)
                         }
-                        Text("Adiconar TextField")
                     }
-                }
+                    .padding()
+                    .background(.black.opacity(0.5))
+                    .clipShape(.capsule)
+                }.padding(5)
                 
                 Spacer()
-                Image(systemName: "info.circle.fill")
-                    .font(.largeTitle)
-                    .foregroundStyle(.white)
+                
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        showExchengeInfo.toggle()
+                    } label: {
+                        Image(systemName: "info.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                    }
+                    .padding(.trailing)
+                }
             }
             .border(.blue)
         }
